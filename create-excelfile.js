@@ -1,3 +1,8 @@
+/**
+* Creating a excel file
+*
+* @author Bob van der Valk
+*/
 use("exceloutput.js");
 
 print("Creating a excelfile");
