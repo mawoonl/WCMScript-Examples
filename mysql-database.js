@@ -1,3 +1,8 @@
+/**
+* Connect to a mysql database
+*
+* @author Bob van der Valk
+*/
 use("dbconnector.js");
 
 var connString = "jdbc:mysql://localhost/migratejs_test";
