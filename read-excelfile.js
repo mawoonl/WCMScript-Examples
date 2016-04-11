@@ -1,5 +1,7 @@
+/**
+* Read a excel file
+*/
 use("excelinput.js");
-print("start");
 
 var spreadsheet = new ExcelImput("E:/Coding/Spongecraft Plugins/eco_prices.xlsx");
 
