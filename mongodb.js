@@ -8,8 +8,9 @@ use("mongodb.js");
 
 print("start");
 
-var mongoConnector = MongoConnector("local");
+var mongoConnector = new MongoConnector("local");
+mongoConnector.connect();
 
 var input = "{name: \"John Doe\", company: \"Mawoo\"}";
 
-mongoConnector.getCollection("Test_collection").insertOne(input);
+mongoConnector.getCollection("test_collection").insertOne(input);
