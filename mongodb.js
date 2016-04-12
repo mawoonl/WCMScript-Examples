@@ -9,6 +9,7 @@ use("mongodb.js");
 print("start");
 
 var mongoConnector = new MongoConnector("local");
+mongoConnector.setHost("localhost");
 mongoConnector.connect();
 
 var input = "{name: \"John Doe\", company: \"Mawoo\"}";
