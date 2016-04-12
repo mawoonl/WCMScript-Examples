@@ -9,7 +9,7 @@ use("fileexport.js");
 var content = "The quick brown fox jumps over the lazy dog.";
 var filename = "doesitwork.txt";
 
-var export = new FileExport(filename, content);
-export.save();
+var fexp = new FileExport(filename, content);
+fexp.save();
 
 print("done");
