@@ -1,19 +1,28 @@
 /**
-* Connect to a mysql database
-*
-* @author Bob van der Valk
-*/
-use("dbconnector.js");
+ * 
+ * Execute queries en retreive data
+ * 
+ * @author Bob van der Valk
+ */ 
+use("Mysql"); // Import the MySql library
 
-var connString = "jdbc:mysql://localhost/migratejs_test";
+// Init the connection
+var connection = Mysql.setHost("localhost") // set the host
+                        .setUser("root") // set the user
+                        .setPass("") // set the password
+                        .setDatabase("wcms_test") // set the database
+                            .connect(); // connect to the database
 
-var dbConnector = new DbConnector(connString, "root", "");
+// example query
+connection.query("INSERT INTO person (name, email) VALUES ('Linus Torvalds', 'linus@linux.com');");
 
-var sql = "SELECT * FROM person";
-var data = dbConnector.query(sql);
+// example query that outputs data
+var result = connection.query("SELECT * FROM person");
 
-while(data.next()) {
-    print(data.get("id"));
-    print(data.get("name"));
-    print(data.get("email"));
+// loop the data
+while(result.next()) {
+    info(result.get("name") +" - "+ result.get("email")); // output the data
 }
+
+// Close the database connection
+connection.close();
