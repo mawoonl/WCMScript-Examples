@@ -16,6 +16,6 @@ element.forEach(function(element) {
     sheet.addRow(rowCount).createCell(element.text(), 0);
     debug(element.text()) ;
     rowCount++;
-    
-    sheet.save("mawoo-data.xlsx");
 });
+
+sheet.save("mawoo-data.xlsx");
