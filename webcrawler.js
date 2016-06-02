@@ -3,11 +3,11 @@
 *
 * @author Bob van der Valk
 */
-use("webcrawler.js");
+use("Crawler");
 
-var crawler = new WebCrawler();
+var doc = Crawler.crawl("http://nu.nl");
+var element = doc.select(".molecule-headline-title");
 
-crawler.run("http://nu.nl");
-var data = crawler.get().select(".molecule-headline-title");
-
-print(data);
+element.forEach(function(element){
+   info(element.text()); 
+});

@@ -1,27 +1,35 @@
 /**
-* Creating a excel file
+* Creating a excel file using data from the crawler
 *
 * @author Bob van der Valk
 */
-use("exceloutput.js");
+use("Crawler"); // Use the crawl library
+use("ExcelExport"); // Use the ExcelExport library
 
-print("Creating a excelfile");
+// Crawl the website http://mawoo.nl
+var doc = Crawler.crawl("http://mawoo.nl");
+// Select a class in the HTML content
+var element = doc.select(".service-box-1 p");
 
-var spreadsheet = new ExcelOutput("testsheet");
+// Create a new excel workbook
+var sheet = ExcelExport.create("mawoo-content");
+var rowCount = 0;
 
-spreadsheet.addRow(0);
-spreadsheet.createCell("Sum: ", 0);
-spreadsheet.createCell("Result: ", 1);
+// Loop through the elements from the crawler
+element.forEach(function(element) {
+    // Save element in the excel sheet at rowCount and collumn zero
+    sheet.addRow(rowCount).createCell(element.text(), 0);
+    
+    // Show the text in the debugger
+    debug(element.text());
+    
+    // add one to rowCount to save the next element on a new row
+    rowCount++;
+    
+    // Save the file
+    sheet.save("C:\\Users\\bobva\\Desktop\\mawoo-data.xlsx");
+});
 
-var rownum = 1;
-for(i = 0; i < 10; i++){
-    spreadsheet.addRow(rownum);
-    rownum++;
-    var a = 1;
-    var b = 2;
+// Close the sheet
+sheet.close();
 
-    spreadsheet.createCell(a +" + "+ b +"=", 0);
-    spreadsheet.createCell(a + b, 1);
-}
-
-spreadsheet.save("workbook.xlsx");

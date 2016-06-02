@@ -1,17 +1,17 @@
 /**
-* Connect to a MongoDB
-* Read files in collections
-*
-* @author Bob van der Valk
-*/
-use("mongodb.js");
+ * Find data in a MongoDB collection
+ * 
+ * @author Bob van der Valk
+ */ 
+use("MongoDB");
 
-print("start");
+var mongo = MongoDB.setDatabase("local").connect();
 
-var mongoConnector = new MongoConnector("local");
-mongoConnector.setHost("localhost");
-mongoConnector.connect();
+var collection = mongo.getCollection("test_collection");
+var find = collection.find("{ company: \"Mawoo\"}");
 
-var input = "{name: \"John Doe\", company: \"Mawoo\"}";
+while(find.hasNext()) {
+    info(find.next());
+}
 
-mongoConnector.getCollection("test_collection").insertOne(input);
+mongo.close();
