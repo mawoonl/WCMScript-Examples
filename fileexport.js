@@ -4,12 +4,9 @@
 *
 * @author Bob van der Valk
 */
-use("fileexport.js");
+use("CustomFile");
 
-var content = "The quick brown fox jumps over the lazy dog.";
-var filename = "doesitwork.txt";
+var content = "The brown fox jumps over the lazy dog";
+CustomFile.newFile("helloworld.txt", content).save();
 
-var fexp = new FileExport(filename, content);
-fexp.save();
-
-print("done");
+info("File saved");
